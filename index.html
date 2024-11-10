@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Py Compiler</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="codemirror-5.65.18/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror-5.65.18/theme/dracula.css">
+    <script src="codemirror-5.65.18/lib/codemirror.js"></script>
+    <script src="codemirror-5.65.18/mode/python/python.js"></script>
+    <script src="codemirror-5.65.18/addon/edit/closebrackets.js"></script>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"></script>
+</head>
+
+<body class="w-100">
+    <div class="container">
+        <div class="lesson-box main-box">
+            <div class="main-box-header">lesson_box</div>
+            <div class="lesson-main">
+                <h4>hello friends this is the first lesson</h4>
+            </div>
+        </div>
+        <div class="editor-box main-box">
+            <div class="main-box-header">
+                <p>Compiler</p>
+                <button class="run-btn" onclick="runCode()" title="Run code"><i class="fa-regular fa-play"></i></button>
+            </div>
+            <textarea id="editor" placeholder="Write Python code here..."></textarea>
+        </div>
+        <div class="result-box main-box">
+            <div class="main-box-header">
+                <p>Result</p>
+                <button class="clear-result-btn" onclick="clearResult()" title="Clear result"><i
+                        class="fa-light fa-ban"></i></button>
+            </div>
+            <textarea id="result" placeholder="Result will appear here..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+            mode: "python",
+            theme: "dracula",
+            lineNumbers: true,
+            autoCloseBrackets: true
+        });
+
+        var width = document.getElementById("editor")
+        editor.setSize(width, 500)
+
+        async function loadPyodideAndRun() {
+            window.pyodide = await loadPyodide();
+        }
+
+        loadPyodideAndRun();
+
+        async function runCode() {
+            const code = editor.getValue();
+            try {
+                await pyodide.runPythonAsync(`
+                    import sys
+                    from io import StringIO
+                    sys.stdout = StringIO()
+                `);
+
+                await pyodide.runPythonAsync(code);
+
+                const output = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+                document.getElementById('result').value = output;
+
+                await pyodide.runPythonAsync("sys.stdout = sys.__stdout__");
+
+            } catch (error) {
+                document.getElementById('result').value = "Error: " + error.message;
+            }
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = "";
+        }
+    </script>
+</body>
+
+</html>
