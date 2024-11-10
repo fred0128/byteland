@@ -48,18 +48,15 @@
             autoCloseBrackets: true
         });
 
-        // Editorin enini ayarlıyoruz
         var width = document.getElementById("editor");
         editor.setSize(width, 500);
 
-        // Pyodide'i yüklemeden önce textarea'yı disable ediyoruz
         async function loadPyodideAndRun() {
-            document.getElementById('editor').value = "Loading..."; // "Loading..." mesajı
-            document.getElementById('editor').disabled = true; // Disable et
+            document.getElementById('editor').value = "Loading...";
+            document.getElementById('editor').disabled = true;
             window.pyodide = await loadPyodide();
 
-            // Pyodide yükləndikdən sonra:
-            document.getElementById('editor').disabled = false; // Aktiv et
+            document.getElementById('editor').disabled = false;
             editor.setValue("print('Hello Wolrd!')");
             runCode();
         }
@@ -67,7 +64,6 @@
 
         loadPyodideAndRun();
 
-        // Kod çalıştırma fonksiyonu
         async function runCode() {
             const code = editor.getValue();
             try {
