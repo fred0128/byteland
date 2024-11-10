@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    color: #fff;
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #313131;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 40px;
+    aspect-ratio: 1/1;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+.nav-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: .3s all ease-in-out;
+    border-bottom: 1px solid transparent;
+    padding: 0 5px;
+}
+
+.nav-links ul li a:hover {
+    border-bottom: 1px solid #fff;
+}
+
+.button-box {
+    display: flex;
+    gap: 10px;
+}
+
+.button-box button {
+    border: 1px solid #fff;
+    padding: 12px;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.button-box .signup-btn {
+    background-color: #fff;
+    color: #212121;
+    border: 1px solid transparent;
+}
+
+main {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lesson_1 {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    color: #212121;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: .3s all ease-in-out;
+}
+
+.lesson_1:hover {
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+}

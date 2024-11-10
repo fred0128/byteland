@@ -65,9 +65,8 @@ button {
 }
 
 .editor-box #editor {
-    background-color: red;
+    cursor: text;
 }
-
 
 .loading-screen {
     position: fixed;
