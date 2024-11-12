@@ -11,6 +11,7 @@
 <body>
 
     <div class="container">
+        <div id="header"></div>
         <ul class="main-flow">
             <li>
                 <details open>
@@ -122,6 +123,13 @@
         </ul>
     </div>
 
+    <script>
+        fetch("../pages/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header").innerHTML = data;
+            });
+    </script>
 </body>
 
 </html>

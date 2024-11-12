@@ -8,9 +8,22 @@ html,
 body {
     width: 100%;
     height: 100%;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: #212121;
     color: #fff;
+    font-family: "Kanit", sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #353535;
+    border-radius: 99px;
 }
 
 button {
@@ -50,41 +63,4 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.result-box .main-box-header button {
-    color: #fff;
-    border: 2px solid #fff;
-}
-
-.result-box textarea {
-    width: 100%;
-    height: 500px;
-    resize: none;
-    outline: none;
-    padding: 10px;
-}
-
-.editor-box #editor {
-    cursor: text;
-}
-
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    z-index: 1000;
-}
-
-.lesson1-main-box {
-    display: flex;
-    flex-direction: row;
 }
