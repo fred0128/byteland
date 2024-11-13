@@ -16,7 +16,7 @@
 
 <body>
     <div id="loader">
-        <a href="../index.html" class="logo">
+        <div class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:v="https://svgstorm.com" viewBox="0 0 500 500" width="60"
                 height="60">
                 <g fill="#fff" fill-opacity="0.00" stroke="None">
@@ -107,7 +107,7 @@
                 </g>
             </svg>
             <p>ByteLand</p>
-        </a>
+        </div>
     </div>
     </div>
     <div class="background"></div>
@@ -115,16 +115,16 @@
         <div id="header"></div>
         <div class="index-box-main">
             <div class="main-left">
-                <p class="des-container">Lorem ipsum, dolor sit amet <span>consectetur</span> adipisicing elit. Nemo
-                    repellat sint
-                    deleniti soluta? Sequi, facilis! Aliquam cum necessitatibus delectus <span>quasi</span> corrupti
-                    provident,
-                    architecto voluptatum aperiam voluptas voluptates ullam ab possimus!
+                <p class="des-container">Kodu sıfırdan <span>öyrən</span>,<br> praktika ilə möhkəmləndir, və yeni
+                    <span>bacarıqlara</span> yiyələn! <br>
+                    ByteLand.az sənə addım-addım bələdçilik edəcək.
                 </p>
-                <span class="des-text">NdFAE*dalR)AFW$&kdnF^%^WawnFo%@#JKn</span>
+                <span class="des-text">NdFAE*dalR=AWW$&kdnF^%^WawnFo%@#JKn</span>
                 <div class="index-inp-box-gs">
-                    <input type="text" id="getstarted-input" placeholder="E-poçtunuzu əlavə edin">
-                    <button class="index-getstarted" onclick="handleGetStarted()">Get Started</button>
+                    <form>
+                        <input type="email" id="getstarted-input" placeholder="E-poçtunuzu əlavə edin">
+                        <button class="index-getstarted" onclick="handleGetStarted()">Get Started</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -186,13 +186,13 @@
         }
 
         const phrases = [
-            'SALAM',
-            'SALAM',
-            'NECƏSƏN?',
-            'PYTHON ÖYRƏNMƏK İSTƏYİRSƏN?',
-            'ONDA GƏL BAŞLAYAQ!',
-            'ELƏ İNDİ!',
-            'E-POÇTUNU DAXİL ET',
+            'JAVA',
+            'PYTHON',
+            'HTML, CSS',
+            'JAVASCRİPT',
+            'KOTLİN',
+            'PHP',
+            'SQL',
             'BİRLİKDƏ ÖYRƏNMƏYƏ BAŞLIYAQ!'
         ]
 
@@ -202,7 +202,7 @@
         let counter = 0
         const next = () => {
             fx.setText(phrases[counter]).then(() => {
-                setTimeout(next, 800)
+                setTimeout(next, 1200)
             })
             counter = (counter + 1) % phrases.length
         }

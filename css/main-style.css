@@ -108,6 +108,14 @@ main {
     height: 40px;
 }
 
+.index-inp-box-gs form {
+    height: 100%;
+    width: auto;
+    display: flex;
+    gap: 10px;
+    height: 40px;
+}
+
 .index-inp-box-gs input {
     width: 250px;
     border-radius: 5px;
