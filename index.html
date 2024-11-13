@@ -126,7 +126,63 @@
                         <button class="index-getstarted" onclick="handleGetStarted()">Get Started</button>
                     </form>
                 </div>
+                <div class="scroll-to-features">
+                    <button>scroll</button>
+                </div>
             </div>
+        </div>
+        <div id="features">
+            <h2>Main Features</h2>
+            <ul>
+                <li>Interactive Lessons</li>
+                <li>Hands-on Coding Challenges</li>
+                <li>Personalized Progress Tracking</li>
+            </ul>
+        </div>
+        <div id="how-it-works">
+            <h2>How It Works</h2>
+            <ol>
+                <li><strong>Sign Up:</strong> Create your free account to get started.</li>
+                <li><strong>Choose a Course:</strong> Explore various programming courses tailored to your skill level.
+                </li>
+                <li><strong>Track Your Progress:</strong> Monitor your learning journey and see your progress grow!</li>
+            </ol>
+        </div>
+
+        <!-- Benefits Section -->
+        <div id="benefits">
+            <h2>Why ByteLand.az?</h2>
+            <p>Learn programming with real-world examples and gain hands-on experience. Join thousands of learners who
+                have successfully launched their coding journeys here.</p>
+        </div>
+
+        <!-- Gallery Section -->
+        <div id="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-images">
+                <img src="lesson1.png" alt="Interactive Lessons">
+                <img src="coding-challenges.png" alt="Coding Challenges">
+                <img src="progress-tracking.png" alt="Progress Tracking">
+            </div>
+        </div>
+
+        <!-- Testimonial Section -->
+        <div id="testimonials">
+            <h2>What Our Learners Say</h2>
+            <blockquote>"ByteLand.az has made learning coding so much easier! The interactive lessons are amazing."
+            </blockquote>
+            <blockquote>"Thanks to ByteLand.az, I was able to build my first web app within weeks!"</blockquote>
+        </div>
+
+        <!-- CTA Section -->
+        <div id="cta">
+            <h2>Start Learning Today</h2>
+            <button onclick="window.location.href='signup.html'">Sign Up for Free</button>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="footer">
+            <p>&copy; 2024 ByteLand.az. All rights reserved.</p>
         </div>
     </div>
 
@@ -262,7 +318,7 @@
 
     <!-- Header Yüklənməsi -->
     <script>
-        fetch("https://fred0128.github.io/byteland/pages/header.html")
+        fetch("pages/header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header").innerHTML = data;
