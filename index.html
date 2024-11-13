@@ -127,7 +127,7 @@
                     </form>
                 </div>
                 <div class="scroll-to-features">
-                    <button>scroll</button>
+                    <a href="#features"><img src="images/mouse.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -149,14 +149,12 @@
             </ol>
         </div>
 
-        <!-- Benefits Section -->
         <div id="benefits">
             <h2>Why ByteLand.az?</h2>
             <p>Learn programming with real-world examples and gain hands-on experience. Join thousands of learners who
                 have successfully launched their coding journeys here.</p>
         </div>
 
-        <!-- Gallery Section -->
         <div id="gallery">
             <h2>Gallery</h2>
             <div class="gallery-images">
@@ -166,7 +164,6 @@
             </div>
         </div>
 
-        <!-- Testimonial Section -->
         <div id="testimonials">
             <h2>What Our Learners Say</h2>
             <blockquote>"ByteLand.az has made learning coding so much easier! The interactive lessons are amazing."
@@ -174,13 +171,11 @@
             <blockquote>"Thanks to ByteLand.az, I was able to build my first web app within weeks!"</blockquote>
         </div>
 
-        <!-- CTA Section -->
         <div id="cta">
             <h2>Start Learning Today</h2>
             <button onclick="window.location.href='signup.html'">Sign Up for Free</button>
         </div>
 
-        <!-- Footer -->
         <div id="footer" class="footer">
             <p>&copy; 2024 ByteLand.az. All rights reserved.</p>
         </div>
@@ -266,13 +261,10 @@
         next()
     </script>
 
-    <!-- Firebase SDK -->
     <script type="module">
-        // Firebase modullarını CDN-dən import et
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
         import { getAuth, sendSignInLinkToEmail } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
-        // Firebase konfiqurasiya məlumatları
         const firebaseConfig = {
             apiKey: "AIzaSyDiV_XVPGlaDLFJFLSgiN2-4W5VSbZmsmo",
             authDomain: "byteland-thefeerid.firebaseapp.com",
@@ -283,20 +275,17 @@
             measurementId: "G-F7RGT5XVQ8"
         };
 
-        // Firebase tətbiqini başlat
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Email ilə giriş linkini göndərən funksiya
         window.sendSignInLink = function (email) {
             const actionCodeSettings = {
-                url: 'https://fred0128.github.io/byteland/pages/success.html', // Yönləndiriləcək səhifə
-                handleCodeInApp: true, // E-poçt link ilə giriş işləsin deyə `true` olmalıdır
+                url: 'https://fred0128.github.io/byteland/pages/success.html',
+                handleCodeInApp: true,
             };
 
             sendSignInLinkToEmail(auth, email, actionCodeSettings)
                 .then(() => {
-                    // E-poçt uğurla göndərildi
                     window.localStorage.setItem('emailForSignIn', email);
                     alert("Giriş linki e-poçtunuza göndərildi.");
                 })
@@ -305,7 +294,6 @@
                 });
         };
 
-        // Get Started düyməsini kliklədikdə çağırılan funksiya
         window.handleGetStarted = function () {
             const email = document.getElementById('getstarted-input').value;
             if (email) {
@@ -316,9 +304,8 @@
         };
     </script>
 
-    <!-- Header Yüklənməsi -->
     <script>
-        fetch("https://fred0128.github.io/byteland/pages/header.html")
+        fetch("pages/header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header").innerHTML = data;
