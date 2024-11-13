@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 html,
@@ -79,7 +81,7 @@ main {
     color: #fff;
     text-decoration: none;
     border-radius: 6px;
-    transition: .3s all ease-in-out;
+    transition: .2s all ease-in-out;
 }
 
 .lesson-icon {
@@ -96,10 +98,6 @@ main {
     min-height: 36px;
     display: flex;
     align-items: center;
-}
-
-.bg-empty:hover {
-    background-color: #ffffff20;
 }
 
 .index-inp-box-gs {
