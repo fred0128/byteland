@@ -177,9 +177,7 @@
             <button onclick="window.location.href='signup.html'">Sign Up for Free</button>
         </div>
 
-        <div id="footer" class="footer">
-            <p>&copy; 2024 ByteLand.az. All rights reserved.</p>
-        </div>
+        <div id="footer"></div>
     </div>
 
     <script>
@@ -311,17 +309,22 @@
             .then(data => {
                 document.getElementById("header").innerHTML = data;
             });
+        fetch("pages/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            });
     </script>
 
     <script>
         window.addEventListener("load", function () {
             setTimeout(function () {
                 const loader = document.getElementById("loader");
-                loader.style.opacity = "0"; // Yumşaq keçid üçün opasiti dəyərini sıfıra salırıq
+                loader.style.opacity = "0";
                 setTimeout(function () {
-                    loader.style.display = "none"; // Tamamən gizlətmək üçün display dəyərini none edirik
-                }, 1000); // 1 saniyəlik keçid üçün
-            }, 2000); // 2000 ms = 2 saniyə
+                    loader.style.display = "none";
+                }, 1000);
+            }, 2000);
         });
     </script>
 

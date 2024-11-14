@@ -19,7 +19,7 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    color: #93e03f;
+    color: var(--secondary-color);
     text-decoration: none;
     font-size: 22px;
     padding: 4px 12px;
@@ -32,35 +32,34 @@ header .logo img {
     aspect-ratio: 1/1;
 }
 
-.logo:hover {
-    background-color: #ffffff10;
+header .logo:hover {
+    background-color: var(--hover-primary-background);
 }
 
 .bg-empty:hover {
-    background-color: #ffffff10;
+    background-color: var(--hover-primary-background);
 }
 
 .nav-links ul {
     display: flex;
     list-style: none;
-    gap: 10px;
 }
 
 .nav-links ul li a {
-    color: #93e03f;
+    color: var(--secondary-color);
     text-decoration: none;
     transition: .3s all ease-in-out;
-    padding: 0 5px;
+    padding: 0 10px;
     border: none;
 }
 
 .nav-links ul:hover a {
-    color: #93e03f80;
+    color: var(--hover-secondary-color);
     border: none;
 }
 
 .nav-links ul li a:hover {
-    color: #93e03f;
+    color: var(--secondary-color);
     border: none;
 }
 
@@ -73,17 +72,17 @@ header .logo img {
     border: 1px solid transparent;
     padding: 12px;
     background-color: transparent;
-    color: #93e03f;
+    color: var(--secondary-color);
     border-radius: 4px;
     transition: .2s all ease-in-out;
 }
 
 .button-box .signup-btn {
-    background-color: #93e03f;
-    color: #212121;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     border: 1px solid transparent;
 }
 
 .button-box .signup-btn:hover {
-    background-color: #92e03fdd;
+    background-color: var(--hover-button-background);
 }

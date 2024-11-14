@@ -10,21 +10,21 @@ html,
 body {
     width: 100%;
     height: 100%;
-    background: #21212120;
-    color: #fff;
+    background: var(--primary-color);
+    color: var(--white-color);
     font-family: "Kanit", sans-serif;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #222;
+    background-color: var(--primary-color);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #353535;
+    background-color: var(--dark-gray-color);
     border-radius: 99px;
 }
 
@@ -78,7 +78,7 @@ main {
 .lesson-box-index {
     display: flex;
     gap: 10px;
-    color: #fff;
+    color: var(--white-color);
     text-decoration: none;
     border-radius: 6px;
     transition: .2s all ease-in-out;
@@ -88,7 +88,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #fff;
+    border: 1px solid var(--white-color);
     border-radius: 5px;
     min-width: 36px;
     min-height: 36px;
@@ -124,13 +124,13 @@ main {
 }
 
 .index-inp-box-gs input:focus {
-    border: 2px solid #93e03f;
+    border: 2px solid var(--secondary-color);
 }
 
 .index-getstarted {
     padding: 0 20px;
-    background-color: #93e03f;
-    color: #212121;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     border: 1px solid transparent;
     border-radius: 5px;
     font-weight: 800;
@@ -150,7 +150,7 @@ main {
 }
 
 .index-main-header span {
-    color: #93e03f;
+    color: var(--secondary-color);
 }
 
 .main-left {
@@ -163,18 +163,7 @@ main {
     font-size: 32px;
 }
 
-.main-left span {
-    color: #93e03f;
-}
-
-
-
-
-
-
-
 /*added*/
-
 
 header {
     display: flex;
@@ -190,71 +179,13 @@ header {
     font-weight: 600;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    color: #93e03f;
-    text-decoration: none;
-    font-size: 22px;
-}
-
-header .logo img {
-    width: 40px;
-    aspect-ratio: 1/1;
-}
-
-.nav-links ul {
-    display: flex;
-    list-style: none;
-    gap: 10px;
-}
-
-.nav-links ul li a {
-    color: #93e03f;
-    text-decoration: none;
-    transition: .3s all ease-in-out;
-    border-bottom: 1px solid #93e03f;
-    padding: 0 5px;
-}
-
-.nav-links ul:hover a {
-    color: #fff;
-    border-bottom: 1px solid #fff;
-}
-
-.nav-links ul li a:hover {
-    color: #93e03f;
-    border-bottom: 1px solid #93e03f;
-}
-
-.button-box {
-    display: flex;
-    gap: 10px;
-}
-
-.button-box button {
-    border: 1px solid transparent;
-    padding: 12px;
-    background-color: transparent;
-    color: #93e03f;
-    border-radius: 4px;
-    transition: .3s all ease-in-out;
-}
-
-.button-box .signup-btn {
-    background-color: #93e03f;
-    color: #212121;
-    border: 1px solid transparent;
-}
-
-
 /* LOADER */
 
 #loader {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: #212121;
+    background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,7 +202,7 @@ header .logo img {
 
 #loader p {
     font-size: 32px;
-    color: #fff;
+    color: var(--white-color);
     animation: loader-anim 1s linear;
     overflow: hidden;
 }
@@ -296,9 +227,6 @@ header .logo img {
     }
 }
 
-
-
-
 #features,
 #how-it-works,
 #benefits,
@@ -320,8 +248,8 @@ header .logo img {
     padding: 10px 20px;
     font-size: 1.1em;
     cursor: pointer;
-    color: #fff;
-    background-color: #333;
+    color: var(--white-color);
+    background-color: var(--dark-gray-color);
     border: none;
 }
 
@@ -332,15 +260,12 @@ header .logo img {
 }
 
 #footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+    background-color: #11111180;
 }
 
 #features {
-    background-color: #212121;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .container {
@@ -365,7 +290,7 @@ header .logo img {
 .scroll-to-features a {
     width: 100%;
     height: 100%;
-    border: 1px solid #93e03f;
+    border: 1px solid var(--secondary-color);
     border-radius: 50%;
     font-size: 16px;
     display: flex;
@@ -389,4 +314,8 @@ header .logo img {
         min-width: 100px;
         height: 100px;
     }
+}
+
+#footer .logo {
+    padding: 0;
 }
