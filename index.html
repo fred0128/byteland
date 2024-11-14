@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
-    <link rel="stylesheet" href="css/main-style.css">
+    <link rel="stylesheet" href="https://fred0128.github.io/byteland/css/main-style.css">
     <link rel="stylesheet"
         href="https://github.com/fred0128/byteland/blob/e2146b479ce889424ab35f6e1a35978dc0104862/css/header.css">
     <title>ByteLand</title>
@@ -304,12 +304,12 @@
     </script>
 
     <script>
-        fetch("pages/header.html")
+        fetch("https://fred0128.github.io/byteland/pages/header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header").innerHTML = data;
             });
-        fetch("pages/footer.html")
+        fetch("https://fred0128.github.io/byteland/pages/footer.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("footer").innerHTML = data;
