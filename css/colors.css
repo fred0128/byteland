@@ -1,7 +1,6 @@
 :root {
     --primary-color: #212121;
     --secondary-color: #93e03f;
-    --accent-color: #e74c3c;
     --hover-primary-background: #ffffff10;
     --hover-secondary-color: #93e03f80;
     --hover-button-background: #92e03fdd;
@@ -20,5 +19,33 @@
 :root {
     --warning-color: #f39c12;
     --success-color: #27ae60;
-    --error-color: #c0392b; 
+    --error-color: #c0392b;
+}
+
+#error-box {
+    background-color: #f44336;
+    color: white;
+}
+
+#warning-box {
+    background-color: #ff9800;
+    color: white;
+}
+
+#success-box {
+    background-color: #4caf50;
+    color: white;
+}
+
+.message-box {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(0, -50%);
+    z-index: 999;
+}
+
+.message-box span {
+    display: block;
+    text-align: center;
 }

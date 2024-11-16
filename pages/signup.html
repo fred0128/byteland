@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inp.css">
+    <link rel="stylesheet" href="../css/colors.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="background-ent-form"></div>
+    <form class="ent-form signup-form" id="signupForm">
+        <p class="ent-form-header">Hesab Yarat</p>
+        <p>Email: <span id="userEmail"></span></p>
+        <label for="username" class="inp-box">
+            <p>İstifadəçi adı</p>
+            <input name="username" id="usernameInput" type="text">
+        </label>
+        <label for="passwordInput" class="inp-box">
+            <p>Parol</p>
+            <input name="passwordInput" id="passwordInput" type="password">
+        </label>
+        <label for="confirmPasswordInput" class="inp-box">
+            <p>Parol təkrarı</p>
+            <input name="confirmPasswordInput" id="confirmPasswordInput" type="password">
+        </label>
+        <div class="ent-button-box">
+            <button class="ent-button signup-btn" id="signup-btn">Hesab Yarat</button>
+        </div>
+        <div class="ent-oth-links">
+            - hesabin var? <br>
+            - he <br>
+            - onda burda ne <br>
+              davay <a href="login.html">logine</a>
+        </div>
+    </form>
+
+    <!-- Error Box -->
+    <div id="error-box" class="message-box" style="display: none;">
+        <span id="error-message"></span>
+    </div>
+
+    <!-- Warning Box -->
+    <div id="warning-box" class="message-box" style="display: none;">
+        <span id="warning-message"></span>
+    </div>
+
+    <!-- Success Box -->
+    <div id="success-box" class="message-box" style="display: none;">
+        <span id="success-message"></span>
+    </div>
+
+    <script src="../script.js"></script>
+    <!-- Firebase 8 versiyası -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <script type="module">
+        import { signup } from "../script/auth.js"; // auth.js faylını daxil edirik
+
+        const signupForm = document.getElementById("signupForm");
+
+        signupForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = localStorage.getItem("userEmail"); // LocalStorage-dən email alırıq
+            const username = document.getElementById("usernameInput").value;
+            const password = document.getElementById("passwordInput").value;
+            const confirmPassword = document.getElementById("confirmPasswordInput").value;
+
+            if (password !== confirmPassword) {
+                showError("Parollar uyğun gəlmir!");
+                return;
+            }
+
+            await signup(email, username, password);  // Qeydiyyat funksiyasını çağırırıq
+        });
+    </script>
+
+</body>
+
+</html>

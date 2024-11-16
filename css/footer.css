@@ -109,18 +109,24 @@ body {
 }
 
 .footer-t-r-box a {
-    color: var(--secondary-color);
     text-decoration: none;
     font-weight: 200;
     transition: .2s all ease-in-out;
     padding: 4px 0px;
 }
 
-.footer-t-r-box a:hover {
+.footer-s-i:hover {
+    scale: 1.1;
+}
+
+.footer-t-r-box a{
+    color: var(--secondary-color);
+}
+
+.footer-t-r-box:hover a {
     color: var(--hover-secondary-color);
 }
 
-.footer-s-i:hover {
-    background-color: var(--hover-secondary-color);
-    scale: 1.2;
+.footer-t-r-box a:hover {
+    color: var(--secondary-color);
 }
