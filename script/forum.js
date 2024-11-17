@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-import { getDatabase, ref, set, push, get, child } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+import { getDatabase, ref, set, push, get, child, onChildAdded } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
 // Firebase konfiqurasiyası
 const firebaseConfig = {
@@ -17,33 +17,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Forum mesajlarını əldə etmək və göstərmək
+// Forum mesajlarını əldə etmək və göstərmək (real-time)
 const displayMessages = async () => {
     const messagesRef = ref(database, 'messages');
-    const snapshot = await get(messagesRef);
 
-    if (snapshot.exists()) {
-        const messages = snapshot.val();
+    // Firebase Realtime Database-də mesajları dinləmək
+    onChildAdded(messagesRef, (snapshot) => {
+        const message = snapshot.val();
         const chatBox = document.getElementById("chat-messages");
-        chatBox.innerHTML = ''; // Mövcud mesajları təmizləyirik
 
-        // Mesajları göstər
-        for (let id in messages) {
-            const message = messages[id];
-            const messageDiv = document.createElement("div");
-            messageDiv.style.padding = "8px";
-            messageDiv.style.marginBottom = "8px";
-            messageDiv.style.backgroundColor = "#3a3a3a";
-            messageDiv.style.color = "#fff";
-            messageDiv.style.borderRadius = "4px";
+        // Hər yeni mesaj gəldikdə onun görünüşünü təmin edirik
+        const messageDiv = document.createElement("div");
+        messageDiv.style.padding = "8px";
+        messageDiv.style.marginBottom = "8px";
+        messageDiv.style.backgroundColor = "#3a3a3a";
+        messageDiv.style.color = "#fff";
+        messageDiv.style.borderRadius = "4px";
 
-            messageDiv.innerHTML = `<strong>${message.username}:</strong> ${message.text}`;
-            chatBox.appendChild(messageDiv);
-        }
+        messageDiv.innerHTML = `<strong>${message.username}:</strong> ${message.text}`;
+        chatBox.appendChild(messageDiv);
 
         // Yeni mesajlar gəldikcə scroll yapın
         chatBox.scrollTop = chatBox.scrollHeight;
-    }
+    });
 };
 
 // Mesaj göndərmə funksiyası
@@ -54,9 +50,6 @@ const sendMessage = async (username, messageText) => {
         username: username,
         text: messageText
     });
-
-    // Göndərildikdən sonra mesajları yenidən göstər
-    displayMessages();
 };
 
 // Mesaj göndərmə formu ilə işləmək
@@ -73,5 +66,5 @@ messageForm.addEventListener("submit", (e) => {
     }
 });
 
-// Forum səhifəsi yükləndikdə əvvəlki mesajları göstər
+// Forum səhifəsi yükləndikdə əvvəlki mesajları göstər (real-time olaraq dinləməyə başlayır)
 window.onload = displayMessages;
