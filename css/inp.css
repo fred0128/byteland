@@ -14,6 +14,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Kanit", sans-serif;
+    user-select: none;
 }
 
 .background-ent-form {
@@ -74,7 +75,7 @@ label:has(input:focus) p {
     margin-top: -8px;
     font-size: 10px;
     color: var(--primary-color);
-    padding: 1px 4px;
+    padding: 1px 8px;
     border-radius: 99px;
 }
 
@@ -110,4 +111,13 @@ input:focus {
 
 .ent-oth-links a {
     color: var(--success-color);
+}
+
+.inp-box:has(input:not(:placeholder-shown)) p {
+    background-color: var(--secondary-color);
+    margin-top: -8px;
+    font-size: 10px;
+    color: var(--primary-color);
+    padding: 1px 8px;
+    border-radius: 99px;
 }
