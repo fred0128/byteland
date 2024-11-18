@@ -34,22 +34,40 @@
     <!-- Firebase 8 versiyası -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-
     <script type="module" src="../script/auth.js"></script>
 
     <script type="module">
         import { login } from "../script/auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"; // Importları əlavə edin
 
-        const emailDisplay = document.getElementById("emailDisplay");
         const loginForm = document.getElementById("loginForm");
 
         // LocalStorage-dən emaili götür və göstər
         const email = localStorage.getItem("userEmail");
+        document.getElementById("userEmail").textContent = email;
 
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const password = document.getElementById("passwordInput").value;
-            await login(email, password);
+            await login(email, password); // login funksiyasını çağırırıq
+
+            // Giriş uğurlu oldusa, istifadəçi məlumatlarını database-dən alırıq
+            const db = getDatabase();
+            const userRef = ref(db, 'userInfo/' + email); // email ilə istifadəçi məlumatlarını axtarırıq
+            get(userRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        // LocalStorage-a istifadəçi adını və emaili yazırıq
+                        localStorage.setItem("username", userData.username);
+                        console.log("İstifadəçi məlumatları alındı: ", userData);
+                    } else {
+                        console.log("İstifadəçi tapılmadı.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Database xəta:", error);
+                });
         });
     </script>
 

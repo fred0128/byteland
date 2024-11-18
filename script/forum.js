@@ -17,6 +17,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+// İstifadəçi adını localStorage-dən əldə etmək və ya soruşmaq
+const getUsername = () => {
+    let username = localStorage.getItem("username");
+    if (!username) {
+        username = prompt("Adınızı daxil edin:");
+        if (username) {
+            localStorage.setItem("username", username);
+        } else {
+            username = "Qonaq"; // İstifadəçi heç bir ad daxil etmədikdə default ad
+        }
+    }
+    return username;
+};
+
 // Forum mesajlarını əldə etmək və göstərmək (real-time)
 const displayMessages = async () => {
     const messagesRef = ref(database, 'messages');
@@ -60,7 +74,7 @@ messageForm.addEventListener("submit", (e) => {
     const messageText = messageInput.value.trim();
 
     if (messageText) {
-        const username = "Guest";  // Bunu login olmuş istifadəçi adı ilə dəyişə bilərsiniz
+        const username = getUsername(); // İstifadəçi adını əldə et
         sendMessage(username, messageText);
         messageInput.value = ''; // Mesaj yazıldısa inputu təmizlə
     }

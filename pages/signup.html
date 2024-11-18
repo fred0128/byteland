@@ -37,44 +37,63 @@
         </div>
     </form>
 
-    <!-- Error Box -->
     <div id="error-box" class="message-box" style="display: none;">
         <span id="error-message"></span>
     </div>
 
-    <!-- Warning Box -->
     <div id="warning-box" class="message-box" style="display: none;">
         <span id="warning-message"></span>
     </div>
 
-    <!-- Success Box -->
     <div id="success-box" class="message-box" style="display: none;">
         <span id="success-message"></span>
     </div>
 
     <script src="../script.js"></script>
-    <!-- Firebase 8 versiyası -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
     <script type="module">
         import { signup } from "../script/auth.js"; // auth.js faylını daxil edirik
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"; // Importları əlavə edin
 
         const signupForm = document.getElementById("signupForm");
 
+        // Formdan məlumatları almaq
         signupForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+
             const email = localStorage.getItem("userEmail"); // LocalStorage-dən email alırıq
+            const safeEmail = email.replace(/\./g, ","); // Nöqtələri dəyişdiririk
             const username = document.getElementById("usernameInput").value;
             const password = document.getElementById("passwordInput").value;
             const confirmPassword = document.getElementById("confirmPasswordInput").value;
 
+            // LocalStorage-ə istifadəçi adı (username) yazırıq
+            localStorage.setItem("username", username);
+
+            // Firebase Realtime Database-ə username və email yazırıq
+            const database = getDatabase();
+            const userInfoRef = ref(database, "userInfo/" + safeEmail); // Təhlükəsiz email
+            set(userInfoRef, {
+                email: email, // Əsl email məlumatı
+                username: username
+            })
+                .then(() => {
+                    console.log("Email və Username Realtime Database-ə yazıldı!");
+                })
+                .catch((error) => {
+                    console.error("Database xəta:", error);
+                });
+
+            // Parolların uyğunluğunu yoxlayırıq
             if (password !== confirmPassword) {
                 showError("Parollar uyğun gəlmir!");
                 return;
             }
 
-            await signup(email, username, password);  // Qeydiyyat funksiyasını çağırırıq
+            // Qeydiyyat funksiyasını çağırırıq
+            await signup(email, username, password);
         });
     </script>
 

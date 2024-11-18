@@ -407,7 +407,7 @@
             <button onclick="window.location.href='signup.html'">Sign Up for Free</button>
         </div>
         <div id="footer">
-            
+
         </div>
     </div>
 
@@ -415,16 +415,23 @@
     <script type="module" src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
     <script type="module">
-        import { checkUser } from "./script/auth.js"; // auth.js faylını daxil edirik
+        import { checkUser } from "./script/auth.js";
 
-        // Event listener ilə emaili alırıq
         const emailForm = document.getElementById("emailForm");
 
-        emailForm.addEventListener("submit", (e) => {
+        emailForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            const email = document.getElementById("emailInput").value;
-            localStorage.setItem("userEmail", email);  // Emaili localStorage-də saxlayırıq
-            checkUser(email);  // Email yoxlanır, əgər varsa login səhifəsinə yönləndirilir
+            const email = document.getElementById("emailInput").value.trim();
+
+            if (!email) {
+                alert("Zəhmət olmasa emailinizi daxil edin!");
+                return;
+            }
+
+            localStorage.setItem("userEmail", email); // Emaili localStorage-də saxla
+
+            // Emaili yoxlamaq üçün auth.js-dəki funksiyanı çağır
+            await checkUser(email);
         });
     </script>
 
