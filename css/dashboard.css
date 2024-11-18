@@ -74,7 +74,7 @@ body {
 
 .dashboard-icons i:hover {
     background-color: var(--hover-primary-background);
-    scale: 1.1;
+    scale: 1.05;
 }
 
 .left-panel-bottom {
@@ -98,7 +98,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 50px;
+    top: 40px;
     margin-left: 45px;
     border-radius: 50%;
     cursor: pointer;
@@ -108,7 +108,7 @@ body {
 }
 
 .left-panel:has(input:checked) {
-    width: 240px;
+    width: 220px;
     display: flex;
     align-items: flex-start;
 }
@@ -124,7 +124,7 @@ body {
 }
 
 .left-panel:has(input:checked) .left-panel-extender {
-    margin-left: 225px;
+    margin-left: 205px;
     transform: rotate(180deg);
 }
 
@@ -148,6 +148,7 @@ body {
     transition: 0.2s all ease-in-out;
     overflow: hidden;
     padding: 10px 0;
+    font-size: 14px;
 }
 
 .left-panel:has(input:checked) .dashboard-icon-item p {
@@ -157,7 +158,7 @@ body {
 
 .dashboard-icon-item:has(p:hover) i {
     background-color: var(--hover-primary-background);
-    scale: 1.1;
+    scale: 1.05;
 }
 
 .dashboard-icon-item span {
@@ -165,6 +166,7 @@ body {
     width: 0;
     opacity: 0;
     justify-self: flex-end;
+    font-size: 14px;
 }
 
 .left-panel:has(input:checked) span {
@@ -172,8 +174,8 @@ body {
     display: flex;
     opacity: 1;
     justify-self: flex-end;
-    min-width: 28px;
-    height: 28px;
+    min-width: 24px;
+    height: 24px;
     align-items: center;
     justify-content: center;
     background-color: #fcef8f;
@@ -182,5 +184,9 @@ body {
 }
 
 .left-panel:has(input:checked) a p {
-    min-width: 110px;
+    min-width: 90px;
+}
+
+.d-i-i-active i {
+    background-color: var(--dark-4-gray-color);
 }

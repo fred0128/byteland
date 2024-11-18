@@ -52,6 +52,7 @@ body {
 
 button {
     width: 18%;
+    min-width: 80px;
     padding: 8px;
     background: #4caf50;
     color: white;
@@ -62,4 +63,111 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.other-message {
+    background-color: #3a3a3a;
+    color: #fff;
+    text-align: left;
+    width: fit-content;
+}
+
+.own-message {
+    background-color: #2b812e;
+    color: #fff;
+    text-align: left;
+    align-self: flex-end;
+}
+
+.other-message strong {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.own-message strong {
+    display: none;
+}
+
+#chat-messages>div {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    gap: 2px;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 8px;
+    word-wrap: break-word;
+}
+
+#chat-messages .message-date {
+    font-size: 10px;
+    align-self: flex-end;
+    color: #ccc;
+}
+
+#chat-messages {
+    max-height: 70%;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    background: #2d2d2d;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#chat-messages::-webkit-scrollbar {
+    display: none;
+}
+
+.username {
+    font-size: 12px;
+    font-weight: bold;
+    color: #f0ad4e;
+    margin-bottom: 4px;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row-reverse;
+}
+
+.message-content {
+    font-size: 14px;
+    background: none;
+}
+
+.message-date {
+    font-size: 12px;
+    color: #ccc;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .forum-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .forum-chat-box {
+        padding: 0;
+        margin: 0;
+        width: 96%;
+    }
+
+    #chat-messages {
+        height: 100%;
+        width: 100%;
+        max-height: unset;
+    }
+    .forum-header {
+        margin: 20px 0;
+    }
 }

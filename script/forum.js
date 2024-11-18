@@ -31,27 +31,50 @@ const getUsername = () => {
     return username;
 };
 
-// Forum mesajlarını əldə etmək və göstərmək (real-time)
 const displayMessages = async () => {
     const messagesRef = ref(database, 'messages');
 
-    // Firebase Realtime Database-də mesajları dinləmək
     onChildAdded(messagesRef, (snapshot) => {
         const message = snapshot.val();
         const chatBox = document.getElementById("chat-messages");
 
-        // Hər yeni mesaj gəldikdə onun görünüşünü təmin edirik
+        // Yeni mesaj üçün `div` elementləri yaradılır
         const messageDiv = document.createElement("div");
-        messageDiv.style.padding = "8px";
-        messageDiv.style.marginBottom = "8px";
-        messageDiv.style.backgroundColor = "#3a3a3a";
-        messageDiv.style.color = "#fff";
-        messageDiv.style.borderRadius = "4px";
+        const messageHeader = document.createElement("div");
+        const messageContentDiv = document.createElement("div");
+        const messageDate = document.createElement("div");
 
-        messageDiv.innerHTML = `<strong>${message.username}:</strong> ${message.text}`;
+        // İstifadəçi öz mesajıdırsa fərqli sinif
+        if (message.username === getUsername()) {
+            messageDiv.classList.add("own-message");
+        } else {
+            messageDiv.classList.add("other-message");
+
+            // Qarşı tərəfin istifadəçi adını göstəririk
+            messageHeader.classList.add("username");
+            messageHeader.innerText = message.username;
+            messageDiv.appendChild(messageHeader);
+        }
+
+        // Mesaj məzmunu və vaxt
+        messageContentDiv.classList.add("message-content");
+        messageContentDiv.innerText = message.text;
+
+        messageDate.classList.add("message-date");
+        const currentTime = new Date();
+        messageDate.innerText = `${currentTime.getHours()}:${currentTime.getMinutes()}`;
+
+        // Sol tərəfdə vaxt göstərilməsi
+        const contentWrapper = document.createElement("div");
+        contentWrapper.classList.add("content-wrapper");
+        contentWrapper.appendChild(messageDate);
+        contentWrapper.appendChild(messageContentDiv);
+
+        // Tam strukturu tamamlayırıq
+        messageDiv.appendChild(contentWrapper);
         chatBox.appendChild(messageDiv);
 
-        // Yeni mesajlar gəldikcə scroll yapın
+        // Yeni mesajlar gəldikcə scroll edirik
         chatBox.scrollTop = chatBox.scrollHeight;
     });
 };
