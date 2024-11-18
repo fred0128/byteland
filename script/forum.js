@@ -25,7 +25,7 @@ const getUsername = () => {
         if (username) {
             localStorage.setItem("username", username);
         } else {
-            username = "Qonaq"; // İstifadəçi heç bir ad daxil etmədikdə default ad
+            username = "Guest"; // İstifadəçi heç bir ad daxil etmədikdə default ad
         }
     }
     return username;
