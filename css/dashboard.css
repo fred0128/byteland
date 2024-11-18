@@ -24,12 +24,13 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: var(--dark-gray-color);
+    background-color: var(--dark-4-gray-color);
     display: flex;
     flex-direction: column;
     padding-top: 10px;
     justify-content: space-between;
     transition: .2s all ease-in-out;
+    z-index: 99;
 }
 
 .left-panel-top {
@@ -91,14 +92,14 @@ body {
 }
 
 .left-panel-extender {
-    background-color: var(--les-line-color);
+    background-color: var(--dark-4-gray-color);
     position: absolute;
     width: 30px;
     height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 40px;
+    bottom: 14px;
     margin-left: 45px;
     border-radius: 50%;
     cursor: pointer;
@@ -107,10 +108,86 @@ body {
     transition: .2s all ease-in-out;
 }
 
+.left-panel-extender::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    background-color: transparent;
+    margin-top: -39px;
+    margin-left: 12px;
+    border-radius: 50%;
+    box-shadow: -5px 5px 0 var(--dark-4-gray-color);
+}
+
+.left-panel-extender::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    background-color: transparent;
+    margin-top: 39px;
+    margin-left: 12px;
+    border-radius: 50%;
+    box-shadow: -5px -5px 0 var(--dark-4-gray-color);
+}
+
+.left-panel:hover .left-panel-extender::before,
+.left-panel:hover .left-panel-extender::after {
+    transform: rotate(-180deg);
+}
+
 .left-panel:has(input:checked) {
     width: 220px;
     display: flex;
     align-items: flex-start;
+}
+
+.left-panel:hover {
+    width: 220px;
+}
+
+.left-panel:hover.dashboard-icons {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.left-panel:hover .logo {
+    display: flex;
+    align-self: flex-start;
+}
+
+.left-panel:hover .left-panel-extender {
+    margin-left: 205px;
+    transform: rotate(180deg);
+}
+
+.left-panel:hover .dashboard-icons {
+    margin-bottom: unset;
+}
+
+.left-panel:hover .dashboard-icon-item p {
+    opacity: 1;
+    width: auto;
+}
+
+.left-panel:hover span {
+    width: auto;
+    display: flex;
+    opacity: 1;
+    justify-self: flex-end;
+    min-width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcef8f;
+    color: var(--primary-color);
+    border-radius: 50%;
+}
+
+.left-panel:hover a p {
+    min-width: 90px;
 }
 
 .left-panel:has(input:checked) .dashboard-icons {
@@ -188,5 +265,178 @@ body {
 }
 
 .d-i-i-active i {
-    background-color: var(--dark-4-gray-color);
+    background-color: var(--dark-34-gray-color);
+}
+
+.secondary-panel {
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    left: 60px;
+    background-color: var(--dark-gray-color);
+    padding: 10px;
+}
+
+.s-panel-header {
+    font-weight: 600;
+}
+
+.s-panel-search {
+    display: flex;
+    align-items: center;
+}
+
+.se-submit {
+    background-color: var(--primary-color);
+    height: 26px;
+    width: 26px;
+    border-radius: 99px 0 0 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding-left: 4px;
+    border: none;
+    color: var(--white-color);
+    outline: none;
+}
+
+.se-reset {
+    background-color: var(--primary-color);
+    height: 26px;
+    width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding-right: 4px;
+    border: none;
+    color: var(--white-color);
+    border-radius: 0 99px 99px 0;
+    outline: none;
+}
+
+.s-panel-search-input {
+    border-radius: 0;
+    border: none;
+    background-color: var(--primary-color);
+    padding: 4px 12px;
+    height: 26px;
+    margin: 20px 0;
+    outline: none;
+    color: var(--white-color);
+    width: 100%;
+}
+
+.s-panel-search-input::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    z-index: 99;
+}
+
+.s-p-les-flow {
+    margin-bottom: 20px;
+}
+
+.s-p-les-flow ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 10px;
+    margin-left: 38px;
+    margin-top: 10px;
+    z-index: 3;
+}
+
+.s-p-les-flow ul li {
+    cursor: pointer;
+}
+
+.s-p-les-flow ul li a {
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+.s-p-les-flow ul li::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 27px;
+    border-left: 1px solid var(--les-line-color);
+    border-bottom: 1px solid var(--les-line-color);
+    margin-left: -20px;
+    margin-top: -20px;
+    z-index: 3;
+}
+
+.s-p-les-flow ul li:first-child::before {
+    height: 17px;
+    margin-top: -10px;
+}
+
+summary {
+    border: 1px solid var(--les-line-color);
+    z-index: 5;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
+}
+
+.sum-left {
+    display: flex;
+    gap: 6px;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+.down-arrow,
+.right-arrow {
+    transition: .2s all ease-in-out;
+}
+
+details:not([open]) .down-arrow {
+    display: none;
+    opacity: 0;
+}
+
+details[open] .right-arrow {
+    display: none;
+    opacity: 0;
+}
+
+.s-p-less-flow-page {
+    height: 100%;
+}
+
+.secondary-panel {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.secondary-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.secondary-panel::-webkit-scrollbar-track {
+    background-color: #333;
+}
+
+.secondary-panel::-webkit-scrollbar-thumb {
+    background-color: #444;
+}
+
+.dashboard-main {
+    position: absolute;
+    width: calc(100% - 260px);
+    height: 100%;
+    left: 260px;
+    top: 0;
 }

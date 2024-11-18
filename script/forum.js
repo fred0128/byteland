@@ -31,6 +31,13 @@ const getUsername = () => {
     return username;
 };
 
+const playNotificationSound = () => {
+    const sound = document.getElementById("notification-sound");
+    sound.play().catch((error) => {
+        console.error("Səsi çalmaqda xəta:", error);
+    });
+};
+
 const displayMessages = async () => {
     const messagesRef = ref(database, 'messages');
 
@@ -67,8 +74,8 @@ const displayMessages = async () => {
         // Sol tərəfdə vaxt göstərilməsi
         const contentWrapper = document.createElement("div");
         contentWrapper.classList.add("content-wrapper");
-        contentWrapper.appendChild(messageDate);
         contentWrapper.appendChild(messageContentDiv);
+        contentWrapper.appendChild(messageDate);
 
         // Tam strukturu tamamlayırıq
         messageDiv.appendChild(contentWrapper);
@@ -76,6 +83,10 @@ const displayMessages = async () => {
 
         // Yeni mesajlar gəldikcə scroll edirik
         chatBox.scrollTop = chatBox.scrollHeight;
+
+        if (!isPageActive) {
+            playNotificationSound();
+        }
     });
 };
 
@@ -105,3 +116,9 @@ messageForm.addEventListener("submit", (e) => {
 
 // Forum səhifəsi yükləndikdə əvvəlki mesajları göstər (real-time olaraq dinləməyə başlayır)
 window.onload = displayMessages;
+
+let isPageActive = true;
+
+document.addEventListener("visibilitychange", () => {
+    isPageActive = !document.hidden;
+});
