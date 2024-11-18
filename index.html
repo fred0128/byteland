@@ -428,14 +428,12 @@
                 return;
             }
 
-            localStorage.setItem("userEmail", email); // Emaili localStorage-də saxla
+            localStorage.setItem("userEmail", email);
 
-            // Emaili yoxlamaq üçün auth.js-dəki funksiyanı çağır
             await checkUser(email);
         });
     </script>
 
-    <!-- text -->
     <script>
         class TextScramble {
             constructor(el) {

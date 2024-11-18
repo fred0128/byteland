@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getDatabase, ref, set, push, get, child, onChildAdded } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
-// Firebase konfiqurasiyası
 const firebaseConfig = {
     apiKey: "AIzaSyDiV_XVPGlaDLFJFLSgiN2-4W5VSbZmsmo",
     authDomain: "byteland-thefeerid.firebaseapp.com",
@@ -13,11 +12,9 @@ const firebaseConfig = {
     measurementId: "G-F7RGT5XVQ8"
 };
 
-// Firebase tətbiqini başlat
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// İstifadəçi adını localStorage-dən əldə etmək və ya soruşmaq
 const getUsername = () => {
     let username = localStorage.getItem("username");
     if (!username) {
@@ -25,7 +22,7 @@ const getUsername = () => {
         if (username) {
             localStorage.setItem("username", username);
         } else {
-            username = "Guest"; // İstifadəçi heç bir ad daxil etmədikdə default ad
+            username = "Guest";
         }
     }
     return username;
@@ -45,25 +42,21 @@ const displayMessages = async () => {
         const message = snapshot.val();
         const chatBox = document.getElementById("chat-messages");
 
-        // Yeni mesaj üçün `div` elementləri yaradılır
         const messageDiv = document.createElement("div");
         const messageHeader = document.createElement("div");
         const messageContentDiv = document.createElement("div");
         const messageDate = document.createElement("div");
 
-        // İstifadəçi öz mesajıdırsa fərqli sinif
         if (message.username === getUsername()) {
             messageDiv.classList.add("own-message");
         } else {
             messageDiv.classList.add("other-message");
 
-            // Qarşı tərəfin istifadəçi adını göstəririk
             messageHeader.classList.add("username");
             messageHeader.innerText = message.username;
             messageDiv.appendChild(messageHeader);
         }
 
-        // Mesaj məzmunu və vaxt
         messageContentDiv.classList.add("message-content");
         messageContentDiv.innerText = message.text;
 
@@ -71,17 +64,14 @@ const displayMessages = async () => {
         const currentTime = new Date();
         messageDate.innerText = `${currentTime.getHours()}:${currentTime.getMinutes()}`;
 
-        // Sol tərəfdə vaxt göstərilməsi
         const contentWrapper = document.createElement("div");
         contentWrapper.classList.add("content-wrapper");
         contentWrapper.appendChild(messageContentDiv);
         contentWrapper.appendChild(messageDate);
 
-        // Tam strukturu tamamlayırıq
         messageDiv.appendChild(contentWrapper);
         chatBox.appendChild(messageDiv);
 
-        // Yeni mesajlar gəldikcə scroll edirik
         chatBox.scrollTop = chatBox.scrollHeight;
 
         if (!isPageActive) {
@@ -90,7 +80,6 @@ const displayMessages = async () => {
     });
 };
 
-// Mesaj göndərmə funksiyası
 const sendMessage = async (username, messageText) => {
     const messagesRef = ref(database, 'messages');
     const newMessageRef = push(messagesRef);
@@ -100,7 +89,6 @@ const sendMessage = async (username, messageText) => {
     });
 };
 
-// Mesaj göndərmə formu ilə işləmək
 const messageForm = document.getElementById("message-form");
 messageForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -108,13 +96,12 @@ messageForm.addEventListener("submit", (e) => {
     const messageText = messageInput.value.trim();
 
     if (messageText) {
-        const username = getUsername(); // İstifadəçi adını əldə et
+        const username = getUsername();
         sendMessage(username, messageText);
-        messageInput.value = ''; // Mesaj yazıldısa inputu təmizlə
+        messageInput.value = '';
     }
 });
 
-// Forum səhifəsi yükləndikdə əvvəlki mesajları göstər (real-time olaraq dinləməyə başlayır)
 window.onload = displayMessages;
 
 let isPageActive = true;

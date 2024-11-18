@@ -182,8 +182,6 @@ main {
     color: var(--secondary-color);
 }
 
-/*added*/
-
 header {
     display: flex;
     align-items: center;
@@ -197,8 +195,6 @@ header {
     padding: 0 20px;
     font-weight: 600;
 }
-
-/* LOADER */
 
 #loader {
     position: fixed;

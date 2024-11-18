@@ -439,4 +439,12 @@ details[open] .right-arrow {
     height: 100%;
     left: 260px;
     top: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chart-container {
+    width: 350px;
+    margin: 20px auto;
 }

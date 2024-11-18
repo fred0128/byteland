@@ -17,19 +17,18 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-// Emaili yoxlayan funksiyanı yenilə
 export const checkUser = async (email) => {
     try {
-        const formattedEmail = email.replaceAll(".", ","); // Nöqtələri vergüllə əvəz et
+        const formattedEmail = email.replaceAll(".", ",");
         const emailRef = ref(database, `userInfo/${formattedEmail}`);
         const snapshot = await get(emailRef);
 
         if (snapshot.exists()) {
             console.log("Email mövcuddur:", snapshot.val());
-            window.location.href = "pages/login.html"; // Email varsa login səhifəsinə yönləndir
+            window.location.href = "pages/login.html";
         } else {
             console.log("Email mövcud deyil, signup-a yönləndirilir.");
-            window.location.href = "pages/signup.html"; // Email yoxdursa signup səhifəsinə yönləndir
+            window.location.href = "pages/signup.html";
         }
     } catch (error) {
         console.error("Realtime Database xəta:", error);
@@ -37,13 +36,11 @@ export const checkUser = async (email) => {
     }
 };
 
-// Yeni istifadəçinin qeydiyyatı
 export const signup = async (email, username, password) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // İstifadəçinin məlumatlarını Realtime Database-də saxla
         const formattedEmail = email.replaceAll(".", ",");
         const userRef = ref(database, `userInfo/${formattedEmail}`);
         await set(userRef, { username, email });
@@ -56,19 +53,17 @@ export const signup = async (email, username, password) => {
     }
 };
 
-// Login funksiyasını yenilə
 export const login = async (email, password) => {
     try {
         const auth = getAuth();
         const database = getDatabase();
-        const formattedEmail = email.replaceAll(".", ","); // Nöqtələri vergüllə əvəz et
+        const formattedEmail = email.replaceAll(".", ",");
 
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
         console.log("Giriş uğurludur:", user);
 
-        // Realtime Database-də istifadəçi adını al
         const userRef = ref(database, `userInfo/${formattedEmail}`);
         const snapshot = await get(userRef);
 
@@ -76,14 +71,12 @@ export const login = async (email, password) => {
             const userData = snapshot.val();
             const username = userData.username;
 
-            // İstifadəçi adını localStorage-ə yaz
             localStorage.setItem("username", username);
             console.log("İstifadəçi adı localStorage-ə yazıldı:", username);
         } else {
             console.warn("İstifadəçi məlumatları tapılmadı!");
         }
 
-        // Dashboard-a yönləndir
         window.location.href = "../pages/dashboard.html";
     } catch (error) {
         console.error("Giriş zamanı xəta:", error);

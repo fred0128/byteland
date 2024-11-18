@@ -54,29 +54,26 @@
     <script type="module" src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
     <script type="module">
-        import { signup } from "../script/auth.js"; // auth.js faylını daxil edirik
-        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"; // Importları əlavə edin
+        import { signup } from "../script/auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
         const signupForm = document.getElementById("signupForm");
 
-        // Formdan məlumatları almaq
         signupForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const email = localStorage.getItem("userEmail"); // LocalStorage-dən email alırıq
-            const safeEmail = email.replace(/\./g, ","); // Nöqtələri dəyişdiririk
+            const email = localStorage.getItem("userEmail");
+            const safeEmail = email.replace(/\./g, ",");
             const username = document.getElementById("usernameInput").value;
             const password = document.getElementById("passwordInput").value;
             const confirmPassword = document.getElementById("confirmPasswordInput").value;
 
-            // LocalStorage-ə istifadəçi adı (username) yazırıq
             localStorage.setItem("username", username);
 
-            // Firebase Realtime Database-ə username və email yazırıq
             const database = getDatabase();
-            const userInfoRef = ref(database, "userInfo/" + safeEmail); // Təhlükəsiz email
+            const userInfoRef = ref(database, "userInfo/" + safeEmail);
             set(userInfoRef, {
-                email: email, // Əsl email məlumatı
+                email: email,
                 username: username
             })
                 .then(() => {
@@ -86,13 +83,11 @@
                     console.error("Database xəta:", error);
                 });
 
-            // Parolların uyğunluğunu yoxlayırıq
             if (password !== confirmPassword) {
                 showError("Parollar uyğun gəlmir!");
                 return;
             }
 
-            // Qeydiyyat funksiyasını çağırırıq
             await signup(email, username, password);
         });
     </script>
