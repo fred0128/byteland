@@ -1,2 +1,72 @@
-<h2>Calendar Section</h2>
-<p>Manage your pages and customize them as needed.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadə Kalendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .calendar {
+            text-align: center;
+            border: 2px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar-header h2 {
+            margin: 0;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .calendar-days div {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .calendar-days div:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .inactive {
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar">
+        <div class="calendar-header">
+            <button id="prev">
+                << </button>
+                    <h2 id="month-year"></h2>
+                    <button id="next">>></button>
+        </div>
+        <div class="calendar-days" id="days"></div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>

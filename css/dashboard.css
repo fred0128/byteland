@@ -244,6 +244,7 @@ body {
     opacity: 0;
     justify-self: flex-end;
     font-size: 14px;
+    margin-left: -10px;
 }
 
 .left-panel:has(input:checked) span {
@@ -261,11 +262,13 @@ body {
 }
 
 .left-panel:has(input:checked) p {
-    min-width: 90px;
+    min-width: 110px;
+    cursor: pointer;
 }
 
 .left-panel:hover p {
-    min-width: 90px;
+    min-width: 110px;
+    cursor: pointer;
 }
 
 .d-i-i-active i {
